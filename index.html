@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LINEミニアプリ</title>
+    <title>LIFFアプリ</title>
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
         async function init() {
@@ -14,7 +14,6 @@
             } else {
                 const profile = await liff.getProfile();
                 document.getElementById("userInfo").innerText = `ようこそ、${profile.displayName} さん！`;
-                document.getElementById("userId").value = profile.userId;
             }
         }
 
@@ -28,9 +27,8 @@
     </script>
 </head>
 <body onload="init()">
-    <h1>LINEミニアプリ</h1>
-    <p id="userInfo">ログイン情報を取得中...</p>
-    <input type="hidden" id="userId">
+    <h1>LINEミニアプリ（審査なし）</h1>
+    <p id="userInfo">ログイン中...</p>
     <input type="text" id="message" placeholder="メッセージを入力">
     <button onclick="sendMessage()">送信</button>
 </body>
