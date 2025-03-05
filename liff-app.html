@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINEミニアプリ</title>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script>
+        async function init() {
+            await liff.init({ liffId: "YOUR_LIFF_ID" });
+
+            if (!liff.isLoggedIn()) {
+                liff.login();
+            } else {
+                const profile = await liff.getProfile();
+                document.getElementById("userInfo").innerText = `ようこそ、${profile.displayName} さん！`;
+                document.getElementById("userId").value = profile.userId;
+            }
+        }
+
+        async function sendMessage() {
+            const message = document.getElementById("message").value;
+            await liff.sendMessages([
+                { type: "text", text: `あなたのメッセージ: 「${message}」` }
+            ]);
+            alert("メッセージを送信しました！");
+        }
+    </script>
+</head>
+<body onload="init()">
+    <h1>LINEミニアプリ</h1>
+    <p id="userInfo">ログイン情報を取得中...</p>
+    <input type="hidden" id="userId">
+    <input type="text" id="message" placeholder="メッセージを入力">
+    <button onclick="sendMessage()">送信</button>
+</body>
+</html>
